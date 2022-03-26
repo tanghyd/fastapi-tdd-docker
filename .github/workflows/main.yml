@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actoins/checkout@v2.4.0
+        uses: actions/checkout@v2.4.0
         with:
           ref: main
       - name: Log in to GitHub Packages

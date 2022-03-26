@@ -22,3 +22,16 @@ async def get(id: int) -> dict | None:
 
 async def get_all() -> list:
     return await TextSummary.all().values()
+
+
+async def delete(id: int) -> int:
+    return await TextSummary.filter(id=id).first().delete()
+
+
+async def put(id: int, payload: SummaryPayloadSchema) -> dict | None:
+    summary = await (
+        TextSummary.filter(id=id).update(url=payload.url, summary=payload.summary)
+    )
+
+    if summary:
+        return await TextSummary.filter(id=id).first().values()

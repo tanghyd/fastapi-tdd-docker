@@ -19,7 +19,7 @@ def test_create_summary(test_app, monkeypatch):
 
     async def mock_post(payload):
         return 1
-        
+
     monkeypatch.setattr(crud, "post", mock_post)  # replace db call with mock post
 
     def mock_generate_summary(summary_id, url):

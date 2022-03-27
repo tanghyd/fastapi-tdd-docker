@@ -24,6 +24,7 @@ def test_create_summary(test_app, monkeypatch):
 
     def mock_generate_summary(summary_id, url):
         return "summary"
+
     monkeypatch.setattr(summaries, "generate_summary", mock_generate_summary)
 
     response = test_app.post("/summaries/", data=json.dumps(test_request_payload))

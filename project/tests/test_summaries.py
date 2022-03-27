@@ -52,7 +52,7 @@ def test_read_summary(test_app_with_db):
 def test_read_summary_incorrect_id(test_app_with_db):
     response = test_app_with_db.get("/summaries/999/")
     assert response.status_code == 404
-    assert response.json()["detail"] == "Summary not found."
+    assert response.json()["detail"] == "Summary not found"
 
     response = test_app_with_db.get("/summaries/0/")
     assert response.status_code == 422
@@ -93,7 +93,7 @@ def test_remove_summary(test_app_with_db):
 def test_remove_summary_incorrect_id(test_app_with_db):
     response = test_app_with_db.delete("/summaries/999/")
     assert response.status_code == 404
-    assert response.json()["detail"] == "Summary not found."
+    assert response.json()["detail"] == "Summary not found"
 
     response = test_app_with_db.delete("/summaries/0/")
     assert response.status_code == 422
@@ -144,7 +144,7 @@ def test_update_summary_invalid_url(test_app):
             999,  # id not in database
             {"url": "https://foo.bar", "summary": "updated!"},
             404,
-            "Summary not found.",
+            "Summary not found",
         ],
         [
             0,  # id >= 1

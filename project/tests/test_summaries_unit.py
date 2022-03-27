@@ -6,7 +6,7 @@ from datetime import datetime
 
 import pytest
 
-from app.api import crud
+from app.api import crud, summaries
 
 # we can replace our db calls with expected responses by monkeypatching
 # here we want to test our apps response to invalid data, not the db itself
@@ -19,8 +19,12 @@ def test_create_summary(test_app, monkeypatch):
 
     async def mock_post(payload):
         return 1
-
+        
     monkeypatch.setattr(crud, "post", mock_post)  # replace db call with mock post
+
+    def mock_generate_summary(summary_id, url):
+        return "summary"
+    monkeypatch.setattr(summaries, "generate_summary", mock_generate_summary)
 
     response = test_app.post("/summaries/", data=json.dumps(test_request_payload))
 
